@@ -19,7 +19,9 @@ use App\Http\Controllers\Api\EventController;
 
 Route::post('api-register', [RegisterController::class, 'register']);
 Route::post('api-login', [LoginController::class, 'login']);
+Route::post('refresh', [LoginController::class, 'refresh']);
 
 Route::group(['middleware'=>'auth:api'], function(){
     Route::apiResource('events', EventController::class);
+    Route::post('logout', [LoginController::class, 'logout']);
 });
